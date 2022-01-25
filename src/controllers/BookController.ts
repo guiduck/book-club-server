@@ -21,11 +21,11 @@ class BookController {
       const bookExist = await Book.find({ _id: req.params.id })
 
       if (bookExist) {
-        await Book.deleteOne({ _id: req.params.id }, ()=>{})   
+        await Book.deleteOne({ _id: req.params.id })   
         return res.status(200).send()
       } else {
         console.log('book doesnt exist')
-        return res.status(400).send()
+        return res.status(200).send()
       }         
     } catch (err) {
       return res.status(400).json({
