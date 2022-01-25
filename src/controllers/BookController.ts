@@ -14,6 +14,25 @@ class BookController {
 
     return res.json(book)
   }
+
+  public async delete (req: Request, res: Response): Promise<Response> {
+    try {
+      
+      const bookExist = await Book.find({ _id: req.params.id })
+
+      if (bookExist) {
+        await Book.deleteOne({ _id: req.params.id }, ()=>{})   
+        return res.status(200).send()
+      } else {
+        console.log('book doesnt exist')
+        return res.status(400).send()
+      }         
+    } catch (err) {
+      return res.status(400).json({
+        message: err.message || 'unexpected error'
+      })
+    }    
+  }
 }
 
 export default new BookController()

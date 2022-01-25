@@ -1,7 +1,6 @@
 import { Schema, model, Document } from 'mongoose'
 
 interface BookInterface extends Document {
-  bookId?: String,
   title?: String,
   description?: String,
   date?: String,
@@ -9,7 +8,6 @@ interface BookInterface extends Document {
 }
 
 const bookSchema = new Schema({
-  bookId: String,
   title: String,
   description: String,
   date: String,
